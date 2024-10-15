@@ -1,4 +1,3 @@
-import { AutoComplete, Input } from "antd/lib";
 import React, { useState } from 'react';
 import Typewriter from "./typewriter";
 import { PromptQuery } from "@/types/promptQuery";
@@ -27,13 +26,6 @@ export default function Search() {
     return (
         <>
             <div className="absolute bottom-8 bg-transparent w-full flex justify-center">
-                {/* <AutoComplete
-                    size="large"
-                >
-                    <Input.Search size="large" placeholder="Give me the ingredients that you have right now !" enterButton
-                    // onSearch={fetchRecipe}
-                    />
-                </AutoComplete> */}
                 <div className="w-4/5">
                     <div className="inline-flex w-full border border-4 border-black rounded-md h-12 px-3 py-1 bg-white">
                         <input className="w-full h-full appearance-none  focus:outline-none focus:bg-white "
