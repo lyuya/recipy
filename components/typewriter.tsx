@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Markdown from 'react-markdown';
 interface TypeWriterProps {
     text: string;
-    delay: number;
+    delay?: number;
 }
 
-const Typewriter = ({ text, delay }: TypeWriterProps) => {
+const Typewriter = ({ text, delay = 10 }: TypeWriterProps) => {
     const [prevText, setPrevText] = useState('')
     const [currentText, setCurrentText] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,7 +28,7 @@ const Typewriter = ({ text, delay }: TypeWriterProps) => {
           return () => clearTimeout(timeout);
         }
       }, [currentIndex, delay, text, prevText]);  
-    return <span className="whitespace-pre-wrap">{currentText}</span>;
+    return <div className="whitespace-pre-wrap"><Markdown>{currentText}</Markdown></div>;
   };
 
 export default Typewriter;

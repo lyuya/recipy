@@ -3,13 +3,14 @@ import Typewriter from "./typewriter";
 import { PromptQuery } from "@/types/promptQuery";
 
 export default function Search() {
+
     const [recipe, setRecipe] = useState<string>('');
-    // const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [ingredientToSearch, setIngredientToSearch] = useState<string>('');
     const fetchRecipe = async () => {
-        // setLoading(true);
+        setLoading(true);
         const prompt: PromptQuery = {
-            ingredients: ingredientToSearch,
+            keyWords: ingredientToSearch,
         }
         const response = await fetch('/api/generate-recipe', {
             method: 'POST',
@@ -21,14 +22,30 @@ export default function Search() {
 
         const data = await response.json();
         setRecipe(data.data);
-        // setLoading(false);
+        setLoading(false);
     }
+
     return (
         <>
-            <div className="absolute bottom-8 bg-transparent w-full flex justify-center">
-                <div className="w-4/5">
-                    <div className="inline-flex w-full border border-4 border-black rounded-md h-12 px-3 py-1 bg-white">
-                        <input className="w-full h-full appearance-none  focus:outline-none focus:bg-white "
+            <div id="search" className="relative">
+
+                <div className="h-full">
+                    <section className="h-full flex justify-center">
+                        <div className="rounded-2xl p-6 w-4/5 overflow-auto">
+                            {loading ? (<div className="typing-loader"></div>) : recipe.length > 0 ?
+                                (<Typewriter text={recipe}>
+                                </Typewriter>) : 
+                                (<div>Tell me what ingredients do you want to cook, what kind of dish do you prefer, which ingredient do you want to avoid, etc.</div>)
+                            }
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div className="mt-4 bg-transparent w-full flex justify-center sticky bottom-10">
+                <div className="w-3/5">
+                    <div className="inline-flex w-full border border-4 border-black rounded-md h-12 px-3 py-1 bg-white/80">
+                        <input className="w-full h-full appearance-none  focus:outline-none focus:bg-transparent bg-transparent"
                             placeholder="type your ingredients here..."
                             value={ingredientToSearch}
                             onChange={(e) => setIngredientToSearch(e.target.value)}
@@ -39,22 +56,6 @@ export default function Search() {
                             </svg>
                         </button>
                     </div>
-
-                </div>
-            </div>
-            <div id="search" className="relative">
-
-                <div className="h-full">
-                    <section className="h-full flex justify-center">
-                        <div className="border border-4 border-black rounded-2xl bg-neutral-100/80 my-8 p-6 w-4/5 overflow-auto">
-                            <p>
-                                <Typewriter delay={50} text={recipe}>
-                                </Typewriter>
-
-                            </p>
-                        </div>
-
-                    </section>
                 </div>
             </div>
         </>

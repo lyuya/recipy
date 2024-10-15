@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: linear-gradient(0.25turn, #2175fb, #f42f8b);
   --foreground: #171717;
 }
 
@@ -16,7 +16,6 @@
 
 body {
   color: var(--foreground);
-  /* background: var(--background); */
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -27,17 +26,80 @@ body {
 }
 
 :root {
-  height: 100%;
-  background: linear-gradient(217deg, rgba(241, 124, 41, 0.8), rgba(255,0,0,0) 70.71%),
-  linear-gradient(127deg, rgba(19, 139, 19, 0.8), rgba(0,255,0,0) 70.71%),
-  linear-gradient(336deg, rgba(242, 77, 130, 0.8), rgba(0,0,255,0) 70.71%);
+  background-color: #FFF7D1;
 }
 
 main #search {
-  height: calc(100vh - 150px);
+  min-height: calc(100vh - 188px);
 }
 
-h1 {
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #b8b802;
+.typing-loader{
+  margin: 60px auto;
+  width: 6px;
+  height: 6px;
+  -webkit-animation: line 1s linear infinite alternate;
+ -moz-animation: line 1s linear infinite alternate;
+ animation: line 1s linear infinite alternate;
+}
+@-webkit-keyframes line{
+  0%{
+     
+      background-color: rgba(0,0,0, 1);
+      box-shadow: 12px 0px 0px 0px rgba(0,0,0,0.2), 
+                  24px 0px 0px 0px rgba(0,0,0,0.2);
+                  
+    }
+  25%{ 
+          background-color: rgba(0,0,0, 0.4);
+          box-shadow: 12px 0px 0px 0px rgba(0,0,0,2), 
+                  24px 0px 0px 0px rgba(0,0,0,0.2);
+                  
+  }
+  75%{ background-color: rgba(0,0,0, 0.4);
+      box-shadow: 12px 0px 0px 0px rgba(0,0,0,0.2), 
+                  24px 0px 0px 0px rgba(0,0,0,2);
+                 
+    }
+}
+
+@-moz-keyframes line{
+  0%{
+     
+      background-color: rgba(0,0,0, 1);
+      box-shadow: 12px 0px 0px 0px rgba(0,0,0,0.2), 
+                  24px 0px 0px 0px rgba(0,0,0,0.2);
+                  
+    }
+  25%{ 
+          background-color: rgba(0,0,0, 0.4);
+          box-shadow: 12px 0px 0px 0px rgba(0,0,0,2), 
+                  24px 0px 0px 0px rgba(0,0,0,0.2);
+                  
+  }
+  75%{ background-color: rgba(0,0,0, 0.4);
+      box-shadow: 12px 0px 0px 0px rgba(0,0,0,0.2), 
+                  24px 0px 0px 0px rgba(0,0,0,2);
+                 
+    }
+}
+
+@keyframes line{
+  0%{
+     
+      background-color: rgba(0,0,0, 1);
+      box-shadow: 12px 0px 0px 0px rgba(0,0,0,0.2), 
+                  24px 0px 0px 0px rgba(0,0,0,0.2);
+                  
+    }
+  25%{ 
+          background-color: rgba(0,0,0, 0.4);
+          box-shadow: 12px 0px 0px 0px rgba(0,0,0,2), 
+                  24px 0px 0px 0px rgba(0,0,0,0.2);
+                  
+  }
+  75%{ background-color: rgba(0,0,0, 0.4);
+      box-shadow: 12px 0px 0px 0px rgba(0,0,0,0.2), 
+                  24px 0px 0px 0px rgba(0,0,0,2);
+                 
+    }
 }

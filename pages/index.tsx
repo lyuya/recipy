@@ -1,17 +1,5 @@
-import localFont from "next/font/local";
 import Header from "@/components/header";
 import Search from "@/components/search";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export default function Home() {
   return (
@@ -20,6 +8,11 @@ export default function Home() {
       <main>
         <Search></Search>
       </main>
+      <footer>
+        <div className="flex justify-center text-sm text-zinc-500 p-1">
+          Copyright by <a href="https://github.com/lyuya">Yanan</a>
+        </div>
+      </footer>
     </>
   );
 }
