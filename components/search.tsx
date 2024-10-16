@@ -31,7 +31,7 @@ export default function Search() {
 
                 <div className="h-full">
                     <section className="h-full flex justify-center">
-                        <div className="rounded-2xl p-6 w-4/5 overflow-auto">
+                        <div className="p-6 w-4/5 overflow-auto leading-5">
                             {loading ? (<div className="typing-loader"></div>) : recipe.length > 0 ?
                                 (<Typewriter text={recipe}>
                                 </Typewriter>) : 
@@ -44,13 +44,18 @@ export default function Search() {
 
             <div className="mt-4 bg-transparent w-full flex justify-center sticky bottom-10">
                 <div className="w-3/5">
-                    <div className="inline-flex w-full border border-4 border-black rounded-md h-12 px-3 py-1 bg-white/80">
+                    <div className="inline-flex w-full border border-4 border-black rounded-md h-12 px-3 py-1 bg-white shadow-lg">
                         <input className="w-full h-full appearance-none  focus:outline-none focus:bg-transparent bg-transparent"
                             placeholder="type your ingredients here..."
                             value={ingredientToSearch}
                             onChange={(e) => setIngredientToSearch(e.target.value)}
+                            onKeyUp={(e) => {
+                                if (e.code == 'Enter') {
+                                    fetchRecipe()
+                                }
+                            }}
                         ></input>
-                        <button onClick={fetchRecipe}>
+                        <button className='hover:scale-125 ease-out	duration-300' onClick={fetchRecipe}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                             </svg>

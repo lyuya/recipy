@@ -26,7 +26,7 @@ body {
 }
 
 :root {
-  background-color: #FFF7D1;
+  background: linear-gradient(180deg,#ffe9a1 0,#F8F8F8 800px)
 }
 
 main #search {
@@ -102,4 +102,9 @@ main #search {
                   24px 0px 0px 0px rgba(0,0,0,2);
                  
     }
+}
+
+hr {
+  border-color: black;
+  margin-top: 20px;
 }
