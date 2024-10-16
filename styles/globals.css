@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: linear-gradient(0.25turn, #2175fb, #f42f8b);
+  --background: #fdc5da;
   --foreground: #171717;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 :root {
-  background: linear-gradient(180deg,#ffe9a1 0,#F8F8F8 800px)
+  background: linear-gradient(180deg,var(--background) 0,#F8F8F8 800px)
 }
 
 main #search {

@@ -31,7 +31,7 @@ export default function Search() {
 
                 <div className="h-full">
                     <section className="h-full flex justify-center">
-                        <div className="p-6 w-4/5 overflow-auto leading-5">
+                        <div className="p-6 w-4/5 overflow-auto leading-5 bg-white/50">
                             {loading ? (<div className="typing-loader"></div>) : recipe.length > 0 ?
                                 (<Typewriter text={recipe}>
                                 </Typewriter>) : 
