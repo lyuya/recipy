@@ -3,7 +3,6 @@ import Typewriter from "./typewriter";
 import { PromptQuery } from "@/types/promptQuery";
 import SearchBar from './searchBar';
 import { Image as OpenAIImage } from 'openai/resources/images.mjs';
-import Image from 'next/image';
 
 export default function MainPage() {
     const [recipe, setRecipe] = useState<string>('');
@@ -55,7 +54,7 @@ export default function MainPage() {
                     <section className="h-full flex justify-center">
                         <div className="p-6 w-4/5 overflow-auto leading-5 bg-white/50">
                             {loading && (<div className="typing-loader"></div>)}
-                            {image && image.url && <div className="relative"><Image alt="dish-image" src={image.url} /></div>}
+                            {image && image.url && <div className="relative"><img src={image.url} /></div>}
                             {recipe.length > 0 && (<Typewriter text={recipe}></Typewriter>)}
                             {!(loading || recipe.length > 0 || image) && (<div>Tell me what ingredients do you want to cook, what kind of dish do you prefer, which ingredient do you want to avoid, etc.</div>)}
                         </div>
