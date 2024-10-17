@@ -29,6 +29,10 @@ body {
   background: linear-gradient(180deg,var(--background) 0,#F8F8F8 800px)
 }
 
+.bg-header {
+  background: linear-gradient(180deg,var(--background) 0,#F8F8F8 800px)
+}
+
 main #search {
   min-height: calc(100vh - 188px);
 }
