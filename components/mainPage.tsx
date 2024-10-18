@@ -24,19 +24,15 @@ export default function MainPage() {
 
     return (
         <>
-            <div id="search" className="relative">
-                <div className="h-full">
-                    <section className="h-full flex justify-center">
-                        <div className="p-6 w-4/5 overflow-auto leading-5 bg-white/50">
-                            {loading && <div className="typing-loader"></div>}
-                            {recipe.length > 0 && <Typewriter text={recipe}></Typewriter>}
-                            {!(loading || recipe.length > 0) && (
-                                <div>
-                                    Tell us what ingredients you want to cook with, your preferred type of dish, any ingredients you'd like to avoid, and more!
-                                </div>
-                            )}
+            <div id="search" className="h-full flex justify-center">
+                <div className="m-3 p-6 w-4/5 overflow-auto leading-5 bg-white/50">
+                    {loading && <div className="typing-loader"></div>}
+                    {recipe.length > 0 && <Typewriter text={recipe}></Typewriter>}
+                    {!(loading || recipe.length > 0) && (
+                        <div className="h-full content-center font-mono font-bold px-5">
+                            Tell us what ingredients you want to cook with, your preferred type of dish, any ingredients you'd like to avoid, and more!
                         </div>
-                    </section>
+                    )}
                 </div>
             </div>
             <SearchBar
