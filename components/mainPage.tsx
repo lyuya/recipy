@@ -30,7 +30,7 @@ export default function MainPage() {
                     {recipe.length > 0 && <Typewriter text={recipe}></Typewriter>}
                     {!(loading || recipe.length > 0) && (
                         <div className="h-full content-center font-mono font-bold px-5">
-                            Tell us what ingredients you want to cook with, your preferred type of dish, any ingredients you'd like to avoid, and more!
+                            Tell us what ingredients you want to cook with, your preferred type of dish, any ingredients you want to avoid, and more!
                         </div>
                     )}
                 </div>
