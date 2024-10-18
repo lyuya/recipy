@@ -25,7 +25,7 @@ export default function MainPage() {
     return (
         <>
             <div id="search" className="h-full flex justify-center">
-                <div className="m-3 p-6 w-4/5 overflow-auto leading-5 bg-white/50">
+                <div className="m-3 p-6 w-4/5 overflow-auto leading-5 bg-white/50 text-center">
                     {loading && <div className="typing-loader"></div>}
                     {recipe.length > 0 && <Typewriter text={recipe}></Typewriter>}
                     {!(loading || recipe.length > 0) && (
