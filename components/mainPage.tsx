@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import Typewriter from "./typewriter";
 import { PromptQuery } from "@/types/promptQuery";
 import SearchBar from './searchBar';
-import { Image as OpenAIImage } from 'openai/resources/images.mjs';
 
 export default function MainPage() {
     const [recipe, setRecipe] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
-    const [image, SetImage] = useState<OpenAIImage>();
+    const [imageUrl, setImageUrl] = useState<string>();
+
     const fetchRecipeInText = async (keyWords: string) => {
         setRecipe('');
-        SetImage(undefined);
+        setImageUrl('');
         setLoading(true);
         const prompt: PromptQuery = { keyWords }
         const response = await fetch('/api/generateRecipeInText', {
@@ -28,21 +28,40 @@ export default function MainPage() {
 
     const fetchRecipeInImage = async (keyWords: string) => {
         setRecipe('');
-        SetImage(undefined);
+        setImageUrl('');
         setLoading(true);
         const prompt: PromptQuery = { keyWords }
-        try {
-            const response = await fetch('/api/generateRecipeInImage', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(prompt),
-            });
-            const data = await response.json();
-            SetImage(data.data);
-        } catch (error) {
-            console.error(error);
+        const response = await fetch('/api/generateRecipeInImage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(prompt),
+        });
+
+        if (!response.ok) {
+            console.error("An error occured !")
+            setLoading(false);
+            return;
+        }
+
+
+        const reader = response.body?.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let done = false;
+        let imageGenerated = false;
+
+        while (!done) {
+            const { value, done: readerDone } = await reader?.read()!;
+            done = readerDone;
+            const chunkValue = decoder.decode(value, { stream: true });
+            const resArray = chunkValue.split('\n\n');
+            const resWithImageUrl = resArray.find(res => res.includes('Generated!'));
+            if (resWithImageUrl) {
+                const url = resWithImageUrl.split(' ')[2]; // Extract the URL from the message
+                setImageUrl(url);
+                imageGenerated = true;
+            }
         }
         setLoading(false);
     }
@@ -54,9 +73,9 @@ export default function MainPage() {
                     <section className="h-full flex justify-center">
                         <div className="p-6 w-4/5 overflow-auto leading-5 bg-white/50">
                             {loading && (<div className="typing-loader"></div>)}
-                            {image && image.url && <div className="relative"><img src={image.url} /></div>}
+                            {imageUrl && <div className="relative"><img src={imageUrl} /></div>}
                             {recipe.length > 0 && (<Typewriter text={recipe}></Typewriter>)}
-                            {!(loading || recipe.length > 0 || image) && (<div>Tell me what ingredients do you want to cook, what kind of dish do you prefer, which ingredient do you want to avoid, etc.</div>)}
+                            {!(loading || recipe.length > 0 || imageUrl) && (<div>Tell me what ingredients do you want to cook, what kind of dish do you prefer, which ingredient do you want to avoid, etc.</div>)}
                         </div>
                     </section>
                 </div>
