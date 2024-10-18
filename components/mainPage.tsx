@@ -49,19 +49,21 @@ export default function MainPage() {
         const reader = response.body?.getReader();
         const decoder = new TextDecoder('utf-8');
         let done = false;
-        let imageGenerated = false;
 
         while (!done) {
-            const { value, done: readerDone } = await reader?.read()!;
-            done = readerDone;
-            const chunkValue = decoder.decode(value, { stream: true });
-            const resArray = chunkValue.split('\n\n');
-            const resWithImageUrl = resArray.find(res => res.includes('Generated!'));
-            if (resWithImageUrl) {
-                const url = resWithImageUrl.split(' ')[2]; // Extract the URL from the message
-                setImageUrl(url);
-                imageGenerated = true;
+            const res = await reader?.read();
+            if (res) {
+                const { value, done: readerDone }: ReadableStreamReadResult<Uint8Array> | undefined = res;
+                done = readerDone;
+                const chunkValue = decoder.decode(value, { stream: true });
+                const resArray = chunkValue.split('\n\n');
+                const resWithImageUrl = resArray.find(res => res.includes('Generated!'));
+                if (resWithImageUrl) {
+                    const url = resWithImageUrl.split(' ')[2]; // Extract the URL from the message
+                    setImageUrl(url);
+                }
             }
+
         }
         setLoading(false);
     }
