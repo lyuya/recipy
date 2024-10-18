@@ -1,27 +1,17 @@
-import { PromptQuery } from "@/types/promptQuery";
 import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
+const apiKey = process.env.OPENAI_API_KEY;
 
-const openAIConfig = {
-    apiKey: process.env.OPENAI_API_KEY
-};
+if (!apiKey) {
+    throw new Error("OPENAI_API_KEY is not defined.")
+}
 
-const openai = new OpenAI(openAIConfig);
-const generatePromptForTextRecipe = (prompt: PromptQuery) => {
-    let generatedPrompt = '';
-    if (!prompt || !prompt.keyWords) {
-        throw new Error("Prompt cannot be empty.");
-    } else {
-        generatedPrompt = `Provide me with some recipes related to these keywords： ${prompt.keyWords}. `;
-    }
-    return generatedPrompt;
-};
+const openai = new OpenAI({ apiKey});
 
-const generateTextOpenAI = async (prompt: PromptQuery) => {
-    const generatedPrompt = generatePromptForTextRecipe(prompt);
+const generateTextOpenAI = async (prompt: string) => {
     const messageParams: ChatCompletionMessageParam[] = [
         { role: "system", content: "You are a helpful assistant that provides some detailed cooking recipes with the given ingredients." },
-        { role: "user", content: generatedPrompt },
+        { role: "user", content: prompt },
     ];
     const response = await openai.chat.completions.create({
         model: "gpt-4o-mini",

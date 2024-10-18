@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Typewriter from "./typewriter";
 import { PromptQuery } from "@/types/promptQuery";
 import SearchBar from './searchBar';
+import { getRecipes } from '@/services/client.service';
 
 export default function MainPage() {
     const [recipe, setRecipe] = useState<string>('');
@@ -12,14 +13,7 @@ export default function MainPage() {
         setLoading(true);
         const prompt: PromptQuery = { keyWords }
         try {
-            const response = await fetch('/api/generateRecipeInText', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(prompt),
-            });
-            const data = await response.json();
+            const data = await getRecipes(prompt);
             setRecipe(data.data);
             setLoading(false);
         } catch (error) {
