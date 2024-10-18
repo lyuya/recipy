@@ -22,7 +22,7 @@ const generatePromptForImageRecipe = (prompt: PromptQuery) => {
     if (!prompt || !prompt.keyWords) {
         throw new Error("Prompt cannot be empty.");
     } else {
-        generatedPrompt = `I want some images of different recipes related to these keywords： ${prompt.keyWords}.`;
+        generatedPrompt = `I want an image of one or more recipes related to these keywords： ${prompt.keyWords}.`;
     }
     return generatedPrompt;
 };
