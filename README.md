@@ -1,7 +1,15 @@
 # 🍳 Recipy
 A Next.js-based web application that helps you find recipes with your need. The app allows users to input their key words about ingredients, type of cuisine or some ingredients to avoid, while leveraging advanced AI APIs (OpenAI or Gemini) to generate recipes in text format.
 
-## Get started
+## 💻 Stack
+
+- Frontend: Next.js, React
+
+- Backend: OpenAI API / Gemini API
+
+- Styling: Tailwind CSS
+
+## 🚀 Get started
 1. Install dependencies:
 ```bash
 npm install
