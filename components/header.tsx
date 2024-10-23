@@ -13,7 +13,7 @@ export default function Header() {
 	}, []);
 	return (
 		<header
-			className={"sticky top-0 z-10 " + (navBg ? "bg-white" : "bg-header")}
+			className={"sticky shadow-md top-0 z-10 " + (navBg ? "bg-white" : "bg-header")}
 		>
 			<div className="flex w-ful justify-center py-2">
 				<img width="80px" src="asset/face-1-svgrepo-com.svg" alt="bowl" />
