@@ -26,8 +26,5 @@ AI_API=GEMINI or OPENAI
 npm run dev
 ```
 
-## ▶️ Demo
-<img src="https://github.com/user-attachments/assets/a3147a7b-9084-4a9b-ad54-b9b168f9268f" width="800" />
-
 ## 📜 License
 This project is licensed under the MIT License.
