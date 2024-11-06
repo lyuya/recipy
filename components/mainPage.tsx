@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Typewriter from "./typewriter";
+import Typewriter from "./Typewriter";
 import { PromptQuery } from "@/types/promptQuery";
-import SearchBar from "./searchBar";
+import SearchBar from "./SearchBar";
 import { getRecipes } from "@/services/client.service";
 
 export default function MainPage() {

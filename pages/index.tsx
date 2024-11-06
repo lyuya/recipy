@@ -1,5 +1,6 @@
-import Header from "@/components/header";
-import MainPage from "@/components/mainPage";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import MainPage from "@/components/MainPage";
 
 export default function Home() {
 	return (
@@ -8,11 +9,7 @@ export default function Home() {
 			<main>
 				<MainPage />
 			</main>
-			<footer>
-				<div className="flex justify-center text-sm text-zinc-500 p-1">
-					Copyright by <a href="https://github.com/lyuya"> Yanan</a>
-				</div>
-			</footer>
+			<Footer />
 		</>
 	);
 }
